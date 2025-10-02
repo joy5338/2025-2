@@ -1,28 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>기차표 예약</title>
 </head>
 <body>
     <h1>기차표 예약</h1>
+
     <h2>출발역</h2>
     <div>
-        <input /><label>서울</label>
-        <input /><label>천안</label>
-        <input /><label>세종</label>
-        <input /><label>익산</label>
+        <input type="radio" name="departure" value="서울">서울
+        <input type="radio" name="departure" value="천안">천안
+        <input type="radio" name="departure" value="세종">세종
+        <input type="radio" name="departure" value="익산">익산
     </div>
+
     <h2>도착역</h2>
     <div>
-        <select>
-            <option>광주</option>
-            <option>목포</option>
-            <option>여수</option>
+        <select id="arrival">
+            <option value="광주">광주</option>
+            <option value="목포">목포</option>
+            <option value="여수">여수</option>
         </select>
     </div>
-    <button>제출</button>
+
+    <button id="btn-submit">제출</button>
+
     <p id="txt-result">결과 : </p>
+
+    <script>
+        document.getElementById("btn-submit").addEventListener("click", function () {
+            // 출발역 선택된 radio 버튼 찾기
+            const departure = document.querySelector("input[name='departure']:checked");
+            const arrival = document.getElementById("arrival").value;
+
+            if (!departure) {
+                console.log("출발역을 선택해주세요.");
+                return;
+            }
+
+            const resultText = `출발역은 ${departure.value}, 도착역은 ${arrival}`;
+            console.log(resultText);
+
+            
+            document.getElementById("txt-result").innerText = "결과 : " + resultText;
+        });
+    </script>
 </body>
 </html>
